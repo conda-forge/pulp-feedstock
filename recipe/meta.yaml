@@ -10,14 +10,16 @@ source:
   url: https://pypi.io/packages/source/P/PuLP/PuLP-{{ version }}.tar.gz
 
 build:
+  noarch: python
   entry_points:
     - pulptest = pulp:pulpTestAll
     - pulpdoctest = pulp:pulpDoctest
-  number: 0
-  script: python setup.py install --single-version-externally-managed --record record.txt
+  number: 1
+  script: python -m pip install --no-deps --ignore-installed .
 
 requirements:
-  build:
+  host:
+    - pip
     - python
     - setuptools
   run:
