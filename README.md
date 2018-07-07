@@ -16,14 +16,15 @@ and call GLPK, COIN CLP/CBC, CPLEX, and GUROBI to solve linear problems.
 Current build status
 ====================
 
-Linux: [![Circle CI](https://circleci.com/gh/conda-forge/pulp-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/pulp-feedstock)
-OSX: [![TravisCI](https://travis-ci.org/conda-forge/pulp-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/pulp-feedstock)
-Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/conda-forge/pulp-feedstock?svg=True)](https://ci.appveyor.com/project/conda-forge/pulp-feedstock/branch/master)
+All platforms:
+[![noarch](https://img.shields.io/circleci/project/github/conda-forge/pulp-feedstock/master.svg?label=noarch)](https://circleci.com/gh/conda-forge/pulp-feedstock)
 
 Current release info
 ====================
-Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/pulp/badges/version.svg)](https://anaconda.org/conda-forge/pulp)
-Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/pulp/badges/downloads.svg)](https://anaconda.org/conda-forge/pulp)
+
+| Name | Downloads | Version | Platforms |
+| --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-pulp-green.svg)](https://anaconda.org/conda-forge/pulp) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/pulp.svg)](https://anaconda.org/conda-forge/pulp) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pulp.svg)](https://anaconda.org/conda-forge/pulp) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/pulp.svg)](https://anaconda.org/conda-forge/pulp) |
 
 Installing pulp
 ===============
