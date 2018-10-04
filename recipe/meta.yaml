@@ -13,7 +13,7 @@ build:
   entry_points:
     - pulptest = pulp:pulpTestAll
     - pulpdoctest = pulp:pulpDoctest
-  number: 0
+  number: 1000
   script: python setup.py install --single-version-externally-managed --record record.txt
 
 requirements:
