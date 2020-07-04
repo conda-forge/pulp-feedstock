@@ -1,19 +1,19 @@
-{% set version = "1.6.8" %}
+{% set version = "2.2" %}
 
 package:
   name: pulp
-  version: '{{ version }}'
+  version: {{ version }}
 
 source:
-  sha256: cfecd6a78c2b08539dc29b7e8281f43d729b1089bdb5e491c3c0956aadbb3fc7
-  fn: 'PuLP-{{ version }}.tar.gz'
+  sha256: 45b78740a3094084e8cc64c83f2084a580c1b58fb9a2f91b87eb4539aa81401b
+  fn: PuLP-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/P/PuLP/PuLP-{{ version }}.tar.gz
 
 build:
   entry_points:
     - pulptest = pulp:pulpTestAll
     - pulpdoctest = pulp:pulpDoctest
-  number: 1000
+  number: 0
   script: python setup.py install --single-version-externally-managed --record record.txt
 
 requirements:
