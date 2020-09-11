@@ -1,35 +1,36 @@
-{% set version = "1.6.8" %}
+{% set name = "pulp" %}
+{% set version = "2.3" %}
+
 
 package:
-  name: pulp
-  version: '{{ version }}'
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
-  sha256: cfecd6a78c2b08539dc29b7e8281f43d729b1089bdb5e491c3c0956aadbb3fc7
-  fn: 'PuLP-{{ version }}.tar.gz'
-  url: https://pypi.io/packages/source/P/PuLP/PuLP-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/PuLP-{{ version }}.tar.gz
+  sha256: 9d8ecf532868cc31fa9ff59ee5d5b2049600c5c902c18c794a2bad677c1f92e5
 
 build:
-  entry_points:
-    - pulptest = pulp:pulpTestAll
-    - pulpdoctest = pulp:pulpDoctest
-  number: 1000
-  script: python setup.py install --single-version-externally-managed --record record.txt
+  number: 0
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
-  build:
+  host:
+    - pip
     - python
-    - setuptools
   run:
+    - amply >=0.1.2
     - python
-    - pyparsing >=2.0.1
 
 test:
-  commands:
-    - pulptest --help
   imports:
     - pulp
     - pulp.solverdir
+  commands:
+    - pip check
+  requires:
+    - pip
 
 about:
   summary: |
