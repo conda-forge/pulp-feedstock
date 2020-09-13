@@ -30,7 +30,7 @@ test:
     - pulp.solverdir
   commands:
     - pip check
-    - python -c 'import pulp; assert pulp.LpSolverDefault, "default solver not available"'
+    - python -c "import pulp; assert pulp.LpSolverDefault, 'default solver not available'"
   requires:
     - pip
 
