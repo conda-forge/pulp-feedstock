@@ -1,13 +1,11 @@
-{% set name = "pulp" %}
 {% set version = "2.3" %}
 
-
 package:
-  name: {{ name|lower }}
+  name: pulp
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/PuLP-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/P/PuLP/PuLP-{{ version }}.tar.gz
   sha256: 9d8ecf532868cc31fa9ff59ee5d5b2049600c5c902c18c794a2bad677c1f92e5
 
 build:
