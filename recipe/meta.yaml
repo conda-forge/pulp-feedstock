@@ -11,9 +11,10 @@ source:
   sha256: 9d8ecf532868cc31fa9ff59ee5d5b2049600c5c902c18c794a2bad677c1f92e5
 
 build:
-  number: 0
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  number: 1
+  script:
+    - {{ PYTHON }} -m pip install . -vv
+    - rm "${SP_DIR}/pulp/solverdir/CoinMP.dll"  # [not win]
 
 requirements:
   host:
@@ -21,6 +22,8 @@ requirements:
     - python
   run:
     - amply >=0.1.2
+    # On Windows there is a bundled 'CoinMP.dll'.
+    - coincbc  # [not win]
     - python
 
 test:
@@ -29,6 +32,7 @@ test:
     - pulp.solverdir
   commands:
     - pip check
+    - python -c 'import pulp; assert pulp.LpSolverDefault, "default solver not available"'
   requires:
     - pip
 
