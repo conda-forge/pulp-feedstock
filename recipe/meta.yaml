@@ -1,19 +1,18 @@
-{% set name = "pulp" %}
 {% set version = "2.3" %}
 
-
 package:
-  name: {{ name|lower }}
+  name: pulp
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/PuLP-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/P/PuLP/PuLP-{{ version }}.tar.gz
   sha256: 9d8ecf532868cc31fa9ff59ee5d5b2049600c5c902c18c794a2bad677c1f92e5
 
 build:
-  number: 0
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  number: 1
+  script:
+    - {{ PYTHON }} -m pip install . -vv
+    - rm "${SP_DIR}/pulp/solverdir/CoinMP.dll"  # [not win]
 
 requirements:
   host:
@@ -21,6 +20,9 @@ requirements:
     - python
   run:
     - amply >=0.1.2
+    # We use glpk on Windows because coincbc is only packaged on Unix, currently.
+    - coincbc  # [not win]
+    - glpk  # [win]
     - python
 
 test:
@@ -29,6 +31,7 @@ test:
     - pulp.solverdir
   commands:
     - pip check
+    - python -c "import pulp; assert pulp.LpSolverDefault, 'default solver not available'"
   requires:
     - pip
 
