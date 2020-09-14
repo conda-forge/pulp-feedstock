@@ -20,8 +20,9 @@ requirements:
     - python
   run:
     - amply >=0.1.2
-    # On Windows there is a bundled 'CoinMP.dll'.
+    # We use glpk on Windows because coincbc is only packaged on Unix, currently.
     - coincbc  # [not win]
+    - glpk  # [win]
     - python
 
 test:
