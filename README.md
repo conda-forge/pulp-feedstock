@@ -232,4 +232,5 @@ Feedstock Maintainers
 
 * [@christopher-schroeder](https://github.com/christopher-schroeder/)
 * [@johanneskoester](https://github.com/johanneskoester/)
+* [@venaturum](https://github.com/venaturum/)
 
