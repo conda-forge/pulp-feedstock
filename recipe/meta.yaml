@@ -9,7 +9,7 @@ source:
   sha256: b2aff10989b3692e3a59301a0cb0acddeb25dcea378f8804c86007075eae55b5
 
 build:
-  number: 0
+  number: 1
   script:
     - {{ PYTHON }} -m pip install . -vv
     - rm "${SP_DIR}/pulp/solverdir/CoinMP.dll"  # [not win]
@@ -21,7 +21,7 @@ requirements:
   run:
     - amply >=0.1.2
     # We use glpk on Windows because coincbc is only packaged on Unix, currently.
-    - coincbc  # [not win]
+    - coin-or-cbc  # [not win]
     - glpk  # [win]
     - python
 
