@@ -9,7 +9,7 @@ source:
   sha256: e73ee6b32d639c9b8cf4b4aded334ba158be5f8313544e056f796ace0a10ae63
 
 build:
-  number: 0
+  number: 1
   script:
     - {{ PYTHON }} -m pip install . -vv
     - rm "${SP_DIR}/pulp/solverdir/CoinMP.dll"  # [not win]
