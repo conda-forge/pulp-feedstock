@@ -1,0 +1,23 @@
+--- setup.py.orig	2024-08-15 13:37:53.000000000 +0100
++++ setup.py	2024-08-15 13:38:31.000000000 +0100
+@@ -40,20 +40,12 @@
+     packages=[
+         "pulp",
+         "pulp.solverdir",
+-        "pulp.solverdir.cbc.linux.32",
+-        "pulp.solverdir.cbc.linux.64",
+-        "pulp.solverdir.cbc.linux.arm64",
+         "pulp.solverdir.cbc.win.32",
+         "pulp.solverdir.cbc.win.64",
+-        "pulp.solverdir.cbc.osx.64",
+     ],
+     package_data={
+-        "pulp.solverdir.cbc.linux.32": ["*", "*.*"],
+-        "pulp.solverdir.cbc.linux.64": ["*", "*.*"],
+-        "pulp.solverdir.cbc.linux.arm64": ["*", "*.*"],
+         "pulp.solverdir.cbc.win.32": ["*", "*.*"],
+         "pulp.solverdir.cbc.win.64": ["*", "*.*"],
+-        "pulp.solverdir.cbc.osx.64": ["*", "*.*"],
+     },
+     include_package_data=True,
+     install_requires=[],
