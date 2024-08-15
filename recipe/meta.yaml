@@ -9,7 +9,6 @@ source:
   sha256: 4903bf96110bbab8ed2c68533f90565ebb76aa367d9e4df38e51bf727927c125
   patches:
     # Use the conda provided cbc binary, not those bundled in tar-ball:
-    - setup.py.patch
     - pulp.cfg.linux.patch
     - pulp.cfg.osx.patch
 
@@ -19,7 +18,7 @@ build:
     - rm -rf "pulp/solverdir/cbc/"
     - {{ PYTHON }} -m pip install . -vv
     # Remove bundled cbc binaries, using coin-or-cbc provided cbc instead:
-    - rm "${SP_DIR}/pulp/solverdir/cbc/*/*"
+    - rm "${SP_DIR}/pulp/solverdir/cbc"
     - rm "${SP_DIR}/pulp/solverdir/CoinMP.dll"  # [not win]
 
 requirements:
