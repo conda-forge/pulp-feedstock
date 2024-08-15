@@ -1,0 +1,11 @@
+--- pulp/pulp.cfg.linux.orig	2024-08-15 12:52:19.000000000 +0100
++++ pulp/pulp.cfg.linux	2024-08-15 12:52:33.000000000 +0100
+@@ -12,7 +12,7 @@
+ GurobiPath = /opt/gurobi201/linux32/lib/python2.5
+ CbcPath = cbc
+ GlpkPath = glpsol
+-PulpCbcPath = %(here)s/solverdir/cbc/%(os)s/%(arch)s/cbc
++PulpCbcPath = cbc
+ PulpChocoPath = %(here)s/solverdir/choco/choco-parsers-with-dependencies.jar
+ [licenses]
+ ilm_cplex_license = "LICENSE your-enterprise\nRUNTIME NEVER ..."
