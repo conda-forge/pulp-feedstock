@@ -15,7 +15,6 @@ source:
 build:
   number: 1
   script:
-    - rm -rf "pulp/solverdir/cbc/"
     - {{ PYTHON }} -m pip install . -vv
     # Remove bundled cbc binaries, using coin-or-cbc provided cbc instead:
     - rm "${SP_DIR}/pulp/solverdir/cbc"
