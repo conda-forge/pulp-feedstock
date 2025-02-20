@@ -1,12 +1,12 @@
-{% set version = "2.8.0" %}
+{% set version = "3.0.1" %}
 
 package:
   name: pulp
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/P/PuLP/PuLP-{{ version }}.tar.gz
-  sha256: 4903bf96110bbab8ed2c68533f90565ebb76aa367d9e4df38e51bf727927c125
+  url: https://pypi.org/packages/source/P/PuLP/pulp-{{ version }}.tar.gz
+  sha256: 5e367830f544a954a3920f5ae28bd45955197b85b3bcd7a367b1bc3c932a11c4
 
 build:
   number: 0
