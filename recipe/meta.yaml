@@ -17,8 +17,10 @@ build:
   script:
     - {{ PYTHON }} -m pip install . -vv
     # Remove bundled cbc binaries, using coin-or-cbc provided cbc instead:
-    - rm -rf "${SP_DIR}/pulp/solverdir/cbc"
-    - rm "${SP_DIR}/pulp/solverdir/CoinMP.dll"
+    - rm -rf "${SP_DIR}/pulp/solverdir/cbc"  # [not win]
+    - rm "${SP_DIR}/pulp/solverdir/CoinMP.dll"  # [not win]
+    - del "${SP_DIR}/pulp/solverdir/cbc/*"  # [win]
+    - del "${SP_DIR}/pulp/solverdir/CoinMP.dll"  # [win]
 
 requirements:
   build:
