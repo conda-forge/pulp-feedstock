@@ -17,8 +17,8 @@ build:
   script:
     - {{ PYTHON }} -m pip install . -vv
     # Remove bundled cbc binaries, using coin-or-cbc provided cbc instead:
-    - rm -rf "${SP_DIR}/pulp/solverdir/cbc"  # [not win]
-    - rm "${SP_DIR}/pulp/solverdir/CoinMP.dll"  # [not win]
+    - rm -rf "${SP_DIR}/pulp/solverdir/cbc"
+    - rm "${SP_DIR}/pulp/solverdir/CoinMP.dll"
 
 requirements:
   build:
@@ -29,9 +29,7 @@ requirements:
     - python
   run:
     - amply >=0.1.2
-    # We use glpk on Windows because coin-or-cbc is only packaged on Unix, currently.
-    - coin-or-cbc  # [not win]
-    - glpk  # [win]
+    - coin-or-cbc
     - python
 
 test:
