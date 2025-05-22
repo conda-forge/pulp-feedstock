@@ -5,13 +5,19 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/P/PuLP/PuLP-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/P/PuLP/PuLP-{{ version }}.tar.gz
   sha256: 4903bf96110bbab8ed2c68533f90565ebb76aa367d9e4df38e51bf727927c125
+  patches:
+    # Use the conda provided cbc binary, not those bundled in tar-ball:
+    - pulp.cfg.linux.patch
+    - pulp.cfg.osx.patch
 
 build:
-  number: 0
+  number: 1
   script:
     - {{ PYTHON }} -m pip install . -vv
+    # Remove bundled cbc binaries, using coin-or-cbc provided cbc instead:
+    - rm -rf "${SP_DIR}/pulp/solverdir/cbc"  # [not win]
     - rm "${SP_DIR}/pulp/solverdir/CoinMP.dll"  # [not win]
 
 requirements:
@@ -21,11 +27,10 @@ requirements:
   host:
     - pip
     - python
+    - setuptools
   run:
     - amply >=0.1.2
-    # We use glpk on Windows because coincbc is only packaged on Unix, currently.
-    - coincbc  # [not win]
-    - glpk  # [win]
+    - coin-or-cbc
     - python
 
 test:
