@@ -56,5 +56,6 @@ about:
 
 extra:
   recipe-maintainers:
+    - maarten-k
     - johanneskoester
     - christopher-schroeder
