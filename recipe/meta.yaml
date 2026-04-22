@@ -1,19 +1,19 @@
-{% set version = "2.8.0" %}
+{% set version = "3.3.0" %}
 
 package:
   name: pulp
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/P/PuLP/PuLP-{{ version }}.tar.gz
-  sha256: 4903bf96110bbab8ed2c68533f90565ebb76aa367d9e4df38e51bf727927c125
+  url: https://pypi.org/packages/source/P/PuLP/pulp-{{ version }}.tar.gz
+  sha256: 7eb99b9ce7beeb8bbb7ea9d1c919f02f003ab7867e0d1e322f2f2c26dd31c8ba
   patches:
     # Use the conda provided cbc binary, not those bundled in tar-ball:
     - pulp.cfg.linux.patch
     - pulp.cfg.osx.patch
 
 build:
-  number: 3
+  number: 0
   script:
     - {{ PYTHON }} -m pip install . -vv
     # Remove bundled cbc binaries, using coin-or-cbc provided cbc instead:
