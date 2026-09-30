@@ -1,0 +1,32 @@
+diff --git a/pulp/apis/coin_api.py b/pulp/apis/coin_api.py
+index baeac8b..829d94a 100644
+--- a/pulp/apis/coin_api.py
++++ b/pulp/apis/coin_api.py
+@@ -45,6 +45,7 @@ if TYPE_CHECKING:
+     from .. import LpProblem
+ 
+ import ctypes
++import shutil
+ import warnings
+ from tempfile import mktemp
+ 
+@@ -56,9 +57,7 @@ coinMP_path = ["libCoinMP.so"]
+ # workaround for (https://github.com/coin-or/pulp/issues/802)
+ if operating_system == "osx":
+     arch = "i64"
+-pulp_cbc_path = os.path.join(
+-    os.path.dirname(__file__), f"../solverdir/cbc/{operating_system}/{arch}/{cbc_path}"
+-)
++pulp_cbc_path = shutil.which("cbc")
+ 
+ PULP_CBC_CMD_DEPRECATION_MSG = (
+     "PULP_CBC_CMD is deprecated and will be removed in PuLP 4.0. "
+@@ -379,7 +378,7 @@ class PULP_CBC_CMD(COIN_CMD):
+     """
+ 
+     name = "PULP_CBC_CMD"
+-    pulp_cbc_path = COIN_CMD.executableExtension(pulp_cbc_path)
++    pulp_cbc_path = pulp_cbc_path
+     _permissions_ok = True
+     try:
+         if os.name != "nt":

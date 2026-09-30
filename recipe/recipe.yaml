@@ -1,0 +1,70 @@
+schema_version: 1
+
+context:
+  version: "3.3.2"
+
+package:
+  name: pulp
+  version: ${{ version }}
+
+source:
+  url: https://files.pythonhosted.org/packages/source/p/pulp/pulp-${{ version }}.tar.gz
+  sha256: d0904700c207ac11e25e3b1213b70eae1d6fb25faa719d75f3f15054901258c0
+  patches:
+    - patches/system-cbc.patch
+
+build:
+  number: 0
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv
+    # Remove bundled cbc binaries, using coin-or-cbc provided cbc instead:
+    - if: not win
+      then: rm -rf "${SP_DIR}/pulp/solverdir/cbc"
+      else: rd /s /q %SP_DIR%/pulp/solverdir/cbc
+  python:
+    entry_points:
+      - pulptest = pulp.tests.run_tests:pulpTestAll
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools >=77
+  run:
+    - amply >=0.1.2
+    - coin-or-cbc
+    - python >=${{ python_min }}
+
+tests:
+  - python:
+      imports:
+        - pulp
+        - pulp.solverdir
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - "*"
+  - script:
+      - python -c "import pulp; assert pulp.LpSolverDefault, 'default solver not available'"
+      - pulptest
+
+about:
+  summary: |
+    PuLP is an LP modeler written in python. PuLP can generate MPS or LP files
+    and call GLPK, COIN CLP/CBC, CPLEX, and GUROBI to solve linear problems.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/coin-or/pulp
+  repository: https://github.com/coin-or/pulp
+
+extra:
+  recipe-maintainers:
+    - johanneskoester
+    - christopher-schroeder
+    - mgorny
