@@ -1,5 +1,5 @@
 diff --git a/pulp/apis/coin_api.py b/pulp/apis/coin_api.py
-index baeac8b..13340ff 100644
+index baeac8b..829d94a 100644
 --- a/pulp/apis/coin_api.py
 +++ b/pulp/apis/coin_api.py
 @@ -45,6 +45,7 @@ if TYPE_CHECKING:
@@ -21,3 +21,12 @@ index baeac8b..13340ff 100644
  
  PULP_CBC_CMD_DEPRECATION_MSG = (
      "PULP_CBC_CMD is deprecated and will be removed in PuLP 4.0. "
+@@ -379,7 +378,7 @@ class PULP_CBC_CMD(COIN_CMD):
+     """
+ 
+     name = "PULP_CBC_CMD"
+-    pulp_cbc_path = COIN_CMD.executableExtension(pulp_cbc_path)
++    pulp_cbc_path = pulp_cbc_path
+     _permissions_ok = True
+     try:
+         if os.name != "nt":
