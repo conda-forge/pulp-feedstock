@@ -8,20 +8,22 @@ package:
   version: ${{ version }}
 
 source:
-  url: https://files.pythonhosted.org/packages/source/p/pulp/pulp-${{ version }}.tar.gz
-  sha256: 0f7fa97ae524ba724baa32d23390345df50ae80d42d6dbdc4d4b0f57dae8187c
+  url: https://github.com/coin-or/pulp/archive/refs/tags/${{ version }}.tar.gz
+  sha256: 88b09a0eb91e3def0c1c3918b17e3838a6bfa247b194453a4de382ce4c57e5f0
   patches:
-    - patches/system-cbc.patch
+    # https://github.com/coin-or/pulp/pull/950
+    - patches/rust-build.patch
 
 build:
   number: 0
-  noarch: python
+  skip: match(python, "<3.12")
   script:
+    # part of https://github.com/coin-or/pulp/pull/950
+    - if: unix
+      then: mv pulp/rust rust
+      else: move pulp/rust rust
     - ${{ PYTHON }} -m pip install . -vv
-    # Remove bundled cbc binaries, using coin-or-cbc provided cbc instead:
-    - if: not win
-      then: rm -rf "${SP_DIR}/pulp/solverdir/cbc"
-      else: rd /s /q %SP_DIR%/pulp/solverdir/cbc
+    - cd rust && cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
   python:
     entry_points:
       - pulptest = pulp.tests.run_tests:pulpTestAll
@@ -32,34 +34,38 @@ requirements:
       then:
         - python
         - cross-python_${{ target_platform }}
+    - ${{ compiler("c") }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler("rust") }}
+    - cargo-bundle-licenses
   host:
+    - python
+    - maturin >=1.4,<2.0
     - pip
-    - python ${{ python_min }}.*
-    - setuptools >=77
   run:
-    - amply >=0.1.2
+    - python
+    - orloge >=1.0.0
     - coin-or-cbc
-    - python >=${{ python_min }}
 
 tests:
   - python:
       imports:
         - pulp
-        - pulp.solverdir
       pip_check: true
-      python_version:
-        - ${{ python_min }}.*
-        - "*"
   - script:
       - python -c "import pulp; assert pulp.LpSolverDefault, 'default solver not available'"
-      - pulptest
+      - if: unix
+        then: cd ${SP_DIR} && pulptest
+        else: cd %SP_DIR% && pulptest
 
 about:
   summary: |
     PuLP is an LP modeler written in python. PuLP can generate MPS or LP files
     and call GLPK, COIN CLP/CBC, CPLEX, and GUROBI to solve linear problems.
   license: MIT
-  license_file: LICENSE
+  license_file:
+    - LICENSE
+    - rust/THIRDPARTY.yml
   homepage: https://github.com/coin-or/pulp
   repository: https://github.com/coin-or/pulp
 
