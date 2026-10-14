@@ -46,6 +46,7 @@ requirements:
     - python
     - orloge >=1.0.0
     - coin-or-cbc
+    - numpy
 
 tests:
   - python:
