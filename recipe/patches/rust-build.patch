@@ -1,0 +1,13 @@
+diff --git a/pyproject.toml b/pyproject.toml
+index baa5b95..46cee4e 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -49,7 +49,7 @@ dev = [
+ bindings = "pyo3"
+ module-name = "pulp._rustcore"
+ python-packages = ["pulp"]
+-manifest-path = "pulp/rust/Cargo.toml"
++manifest-path = "rust/Cargo.toml"
+ # *.mps is gitignored, so the test fixtures have to be included explicitly
+ include = [{ path = "pulp/tests/fixtures/**/*", format = ["sdist", "wheel"] }]
+ 
