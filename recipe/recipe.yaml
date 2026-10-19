@@ -1,7 +1,7 @@
 schema_version: 1
 
 context:
-  version: "4.0.1"
+  version: "4.1.0"
 
 package:
   name: pulp
@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://files.pythonhosted.org/packages/source/p/pulp/pulp-${{ version }}.tar.gz
-  sha256: 976f1184a69ab2aceb12e7c14e375775f184bddb8e66ee611ebaccbcad537f8c
+  sha256: 03993abf9379be2f00c4b8c9c0e249ee71989cc8ee45730e812edebaca23f33a
   patches:
     # https://github.com/coin-or/pulp/pull/950
     - patches/rust-build.patch
